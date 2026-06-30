@@ -1,0 +1,298 @@
+{
+  "patterns": [
+    {
+      "id": "sliding_window",
+      "name": "Sliding Window",
+      "category": "Arrays, Strings & Sorting",
+      "keywords": ["substring", "subarray", "window", "contiguous", "consecutive elements", "longest", "shortest", "max sum of size"],
+      "time_complexity": "O(n)",
+      "space_complexity": "O(1) to O(k)",
+      "edge_cases": ["empty array", "window larger than array", "all same elements"],
+      "hints": [
+        "Can you avoid recomputing the whole window every time you move it?",
+        "What should happen to the window boundaries as you scan left to right?",
+        "What condition tells you when to shrink the window versus grow it?"
+      ]
+    },
+    {
+      "id": "two_pointers",
+      "name": "Two Pointers",
+      "category": "Arrays, Strings & Sorting",
+      "keywords": ["pair", "sorted array", "two sum", "palindrome", "reverse", "opposite ends", "left right pointer"],
+      "time_complexity": "O(n)",
+      "space_complexity": "O(1)",
+      "edge_cases": ["empty array", "single element", "no valid pair exists"],
+      "hints": [
+        "If the array is sorted, what does moving one pointer inward tell you?",
+        "Where should your two pointers start?",
+        "What decides whether you move the left pointer, the right pointer, or both?"
+      ]
+    },
+    {
+      "id": "fast_slow_pointers",
+      "name": "Fast & Slow Pointers",
+      "category": "Arrays, Strings & Sorting",
+      "keywords": ["cycle", "linked list", "middle of list", "detect loop", "tortoise hare"],
+      "time_complexity": "O(n)",
+      "space_complexity": "O(1)",
+      "edge_cases": ["empty list", "single node", "no cycle present"],
+      "hints": [
+        "What happens if one pointer moves twice as fast as the other?",
+        "Will the fast pointer ever lap the slow pointer if there's a cycle?",
+        "How would you find the cycle's starting point once a meeting point is found?"
+      ]
+    },
+    {
+      "id": "prefix_sum",
+      "name": "Prefix Sum",
+      "category": "Arrays, Strings & Sorting",
+      "keywords": ["range sum", "cumulative", "subarray sum", "running total"],
+      "time_complexity": "O(n) preprocessing, O(1) query",
+      "space_complexity": "O(n)",
+      "edge_cases": ["empty array", "negative numbers", "single query"],
+      "hints": [
+        "Could you precompute cumulative sums to answer range queries instantly?",
+        "How would you get the sum of a subarray using two prefix sums?",
+        "What's the prefix sum at index -1 conceptually?"
+      ]
+    },
+    {
+      "id": "binary_search",
+      "name": "Binary Search",
+      "category": "Arrays, Strings & Sorting",
+      "keywords": ["sorted", "search", "find target", "log n", "minimum maximum value", "rotated array"],
+      "time_complexity": "O(log n)",
+      "space_complexity": "O(1)",
+      "edge_cases": ["empty array", "target not present", "duplicate elements"],
+      "hints": [
+        "What property of the array lets you eliminate half the search space each step?",
+        "How do you decide whether to search the left or right half?",
+        "What's your loop's termination condition?"
+      ]
+    },
+    {
+      "id": "merge_quick_sort",
+      "name": "Merge / Quick Sort",
+      "category": "Arrays, Strings & Sorting",
+      "keywords": ["sort", "divide and conquer", "merge", "partition", "pivot"],
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n) merge, O(log n) quick",
+      "edge_cases": ["empty array", "already sorted", "all duplicate elements"],
+      "hints": [
+        "How would you split the problem into smaller subproblems?",
+        "What's the base case for your recursion?",
+        "How do you combine two sorted halves efficiently?"
+      ]
+    },
+    {
+      "id": "counting_sort",
+      "name": "Counting Sort",
+      "category": "Arrays, Strings & Sorting",
+      "keywords": ["counting sort", "bucket", "frequency", "small range of values"],
+      "time_complexity": "O(n + k)",
+      "space_complexity": "O(k)",
+      "edge_cases": ["negative numbers", "large value range", "empty input"],
+      "hints": [
+        "What if you counted occurrences of each value instead of comparing elements?",
+        "How does the range of input values affect your space usage?",
+        "How would you reconstruct the sorted array from counts?"
+      ]
+    },
+    {
+      "id": "bfs_dfs",
+      "name": "BFS & DFS Tracing",
+      "category": "Graphs, Trees & Lists",
+      "keywords": ["graph", "traversal", "connected", "neighbors", "explore", "visit all nodes", "shortest unweighted path"],
+      "time_complexity": "O(V + E)",
+      "space_complexity": "O(V)",
+      "edge_cases": ["disconnected graph", "cycles", "self-loops"],
+      "hints": [
+        "Should you explore level by level, or go as deep as possible first?",
+        "How do you avoid revisiting the same node?",
+        "What data structure naturally enforces the order you want to visit nodes?"
+      ]
+    },
+    {
+      "id": "mst",
+      "name": "Kruskal & Prim MST",
+      "category": "Graphs, Trees & Lists",
+      "keywords": ["minimum spanning tree", "connecting cities", "minimal cost", "connect all nodes cheapest"],
+      "time_complexity": "O(E log V)",
+      "space_complexity": "O(V)",
+      "edge_cases": ["disconnected graph", "duplicate edge weights", "single node"],
+      "hints": [
+        "How do you avoid creating a cycle while connecting components?",
+        "Should you process edges by weight, or grow outward from a node?",
+        "What structure helps you check efficiently if two nodes are already connected?"
+      ]
+    },
+    {
+      "id": "topo_sort",
+      "name": "Topological Sort",
+      "category": "Graphs, Trees & Lists",
+      "keywords": ["topological", "dependency order", "prerequisite", "task scheduling", "course schedule"],
+      "time_complexity": "O(V + E)",
+      "space_complexity": "O(V)",
+      "edge_cases": ["cycle present (no valid order)", "disconnected graph", "single node"],
+      "hints": [
+        "How do you know a node is safe to process - what must happen first?",
+        "What does it mean if you can't find any node with zero incoming edges?",
+        "Could counting incoming edges per node help you decide processing order?"
+      ]
+    },
+    {
+      "id": "dijkstra",
+      "name": "Dijkstra's Shortest Path",
+      "category": "Graphs, Trees & Lists",
+      "keywords": ["shortest path", "weighted graph", "minimum distance", "dijkstra"],
+      "time_complexity": "O(E log V)",
+      "space_complexity": "O(V)",
+      "edge_cases": ["disconnected graph", "negative weights (invalid)", "single node"],
+      "hints": [
+        "What data structure helps you always process the closest unvisited node first?",
+        "How would you track the shortest known distance to each node?",
+        "What happens when you reach a node you've already finalized?"
+      ]
+    },
+    {
+      "id": "union_find",
+      "name": "Union-Find Structural Maps",
+      "category": "Graphs, Trees & Lists",
+      "keywords": ["union find", "disjoint set", "connected components", "merge groups", "redundant connection"],
+      "time_complexity": "O(α(n)) per operation",
+      "space_complexity": "O(n)",
+      "edge_cases": ["self-union", "already connected nodes", "single element"],
+      "hints": [
+        "How would you quickly check if two elements belong to the same group?",
+        "What happens to lookup speed if you always point to a representative root?",
+        "Could path compression speed up future queries?"
+      ]
+    },
+    {
+      "id": "tree_traversal_lca",
+      "name": "Tree Traversals & LCA",
+      "category": "Graphs, Trees & Lists",
+      "keywords": ["binary tree", "lowest common ancestor", "inorder", "preorder", "postorder", "tree traversal"],
+      "time_complexity": "O(n)",
+      "space_complexity": "O(h)",
+      "edge_cases": ["empty tree", "single node", "skewed tree"],
+      "hints": [
+        "What order should you visit root, left, and right in for your goal?",
+        "How would recursion naturally handle going deeper into the tree?",
+        "If two nodes split at a certain point, what does that point represent?"
+      ]
+    },
+    {
+      "id": "linked_list_mutation",
+      "name": "Linked List Mutation",
+      "category": "Graphs, Trees & Lists",
+      "keywords": ["linked list", "reverse list", "merge lists", "remove node", "swap nodes"],
+      "time_complexity": "O(n)",
+      "space_complexity": "O(1)",
+      "edge_cases": ["empty list", "single node", "removing head or tail"],
+      "hints": [
+        "How many pointers do you need to track while reversing links?",
+        "What happens to the next pointer before you reassign it?",
+        "Do you need a dummy head node to simplify edge cases?"
+      ]
+    },
+    {
+      "id": "memo_tabulation",
+      "name": "Memoization / Tabulation",
+      "category": "DP & Advanced Paradigms",
+      "keywords": ["dynamic programming", "overlapping subproblems", "memoize", "dp table", "fibonacci"],
+      "time_complexity": "O(n) to O(n^2)",
+      "space_complexity": "O(n)",
+      "edge_cases": ["base cases undefined", "negative indices", "single element"],
+      "hints": [
+        "Are you solving the same subproblem more than once?",
+        "Could you cache results instead of recomputing them?",
+        "What's the smallest subproblem you can solve directly?"
+      ]
+    },
+    {
+      "id": "knapsack",
+      "name": "0/1 & Unbounded Knapsack",
+      "category": "DP & Advanced Paradigms",
+      "keywords": ["knapsack", "capacity", "weight value", "maximize value", "coin change"],
+      "time_complexity": "O(n * capacity)",
+      "space_complexity": "O(capacity)",
+      "edge_cases": ["zero capacity", "item weight exceeds capacity", "empty item list"],
+      "hints": [
+        "For each item, what two choices do you have?",
+        "Can an item be reused, or only picked once?",
+        "How would you build up the answer from smaller capacities?"
+      ]
+    },
+    {
+      "id": "lcs",
+      "name": "Longest Common Subsequence",
+      "category": "DP & Advanced Paradigms",
+      "keywords": ["common subsequence", "edit distance", "string alignment", "lcs"],
+      "time_complexity": "O(m*n)",
+      "space_complexity": "O(m*n)",
+      "edge_cases": ["empty string", "no common characters", "identical strings"],
+      "hints": [
+        "What do you do when characters at the current positions match?",
+        "What do you do when they don't match?",
+        "Could a 2D table track the best answer for every prefix pair?"
+      ]
+    },
+    {
+      "id": "backtracking",
+      "name": "Backtracking Exploration",
+      "category": "DP & Advanced Paradigms",
+      "keywords": ["permutations", "combinations", "subsets", "n-queens", "backtrack", "all possible ways"],
+      "time_complexity": "O(2^n) to O(n!)",
+      "space_complexity": "O(n)",
+      "edge_cases": ["empty input", "single element", "all elements identical"],
+      "hints": [
+        "What choice are you making at each step of the recursion?",
+        "When should you undo a choice and try another?",
+        "What condition tells you a partial solution is invalid early?"
+      ]
+    },
+    {
+      "id": "greedy",
+      "name": "Greedy Optimizations",
+      "category": "DP & Advanced Paradigms",
+      "keywords": ["greedy", "interval scheduling", "activity selection", "minimum number of"],
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(1)",
+      "edge_cases": ["empty input", "overlapping intervals", "single interval"],
+      "hints": [
+        "What local choice seems best at each step?",
+        "Does sorting the input first reveal an obvious greedy order?",
+        "Can you prove the greedy choice never leads to a worse global outcome?"
+      ]
+    },
+    {
+      "id": "monotonic_stack",
+      "name": "Monotonic Stacks / Queues",
+      "category": "DP & Advanced Paradigms",
+      "keywords": ["next greater element", "next smaller", "monotonic", "stock span", "sliding window maximum"],
+      "time_complexity": "O(n)",
+      "space_complexity": "O(n)",
+      "edge_cases": ["empty array", "strictly increasing array", "strictly decreasing array"],
+      "hints": [
+        "What should you do when the current element breaks the stack's order?",
+        "Should the stack stay increasing or decreasing for this problem?",
+        "What does popping from the stack tell you about that popped element?"
+      ]
+    },
+    {
+      "id": "trie",
+      "name": "Trie Structure Matching",
+      "category": "DP & Advanced Paradigms",
+      "keywords": ["trie", "prefix tree", "autocomplete", "word search", "prefix matching"],
+      "time_complexity": "O(L) per word",
+      "space_complexity": "O(N*L)",
+      "edge_cases": ["empty string", "duplicate words", "no matching prefix"],
+      "hints": [
+        "How would you share common prefixes between words in your structure?",
+        "What marks the end of a valid word in your tree?",
+        "How would you search for all words starting with a given prefix?"
+      ]
+    }
+  ]
+}
