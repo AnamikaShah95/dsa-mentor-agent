@@ -1,12 +1,13 @@
 # knowledge/pattern_matcher.py
 """
-Day 4: Pattern Matching Engine
-Loads patterns.json and matches a free-text problem description to the
-best-fitting algorithmic pattern using keyword overlap scoring.
+Day 5: Keyword Parsing Logic (upgraded)
+Adds tokenized word-level matching on top of Day 4's phrase matching,
+so problems don't need an exact keyword phrase to be recognized.
 """
 
 import json
 import os
+import re
 
 PATTERNS_PATH = os.path.join(os.path.dirname(__file__), "patterns.json")
 
@@ -17,26 +18,50 @@ def load_patterns() -> list:
     return data["patterns"]
 
 
+def tokenize(text: str) -> set:
+    """Lowercase, strip punctuation, split into a set of words."""
+    text = text.lower()
+    text = re.sub(r"[^a-z0-9\s]", " ", text)
+    return set(text.split())
+
+
+def score_pattern(problem_text: str, pattern: dict) -> float:
+    """
+    Combined scoring:
+      - Phrase match (exact substring) = 2 points  -> strong signal
+      - Word-level overlap = 1 point per shared word -> weak signal
+    """
+    text_lower = problem_text.lower()
+    problem_tokens = tokenize(problem_text)
+
+    score = 0.0
+    for kw in pattern["keywords"]:
+        if kw in text_lower:
+            score += 2.0  # exact phrase match, high confidence
+        else:
+            kw_tokens = tokenize(kw)
+            overlap = kw_tokens & problem_tokens
+            if overlap:
+                # partial credit, scaled by how much of the keyword phrase matched
+                score += 1.0 * (len(overlap) / len(kw_tokens))
+
+    return round(score, 2)
+
+
 def match_pattern(problem_text: str, patterns: list = None) -> dict:
-    """
-    Scores each pattern by counting how many of its keywords appear
-    in the problem text. Returns the highest scoring pattern, or a
-    fallback 'no match' pattern if nothing scores above zero.
-    """
     if patterns is None:
         patterns = load_patterns()
 
-    text = problem_text.lower()
     best_match = None
-    best_score = 0
+    best_score = 0.0
 
     for pattern in patterns:
-        score = sum(1 for kw in pattern["keywords"] if kw in text)
+        score = score_pattern(problem_text, pattern)
         if score > best_score:
             best_score = score
             best_match = pattern
 
-    if best_match is None:
+    if best_match is None or best_score == 0:
         return {
             "id": "unmatched",
             "name": "Brute Force (no pattern matched)",
@@ -49,21 +74,20 @@ def match_pattern(problem_text: str, patterns: list = None) -> dict:
                 "What's the most direct way to check every possibility?",
                 "Could you reduce repeated work with a data structure?",
                 "Is there a known pattern this resembles once simplified?"
-            ]
+            ],
+            "match_score": 0
         }
 
     return {**best_match, "match_score": best_score}
 
 
 def get_top_matches(problem_text: str, top_n: int = 3, patterns: list = None) -> list:
-    """Returns the top N candidate patterns, useful for ambiguous problems."""
     if patterns is None:
         patterns = load_patterns()
 
-    text = problem_text.lower()
     scored = []
     for pattern in patterns:
-        score = sum(1 for kw in pattern["keywords"] if kw in text)
+        score = score_pattern(problem_text, pattern)
         if score > 0:
             scored.append({**pattern, "match_score": score})
 
@@ -80,6 +104,7 @@ if __name__ == "__main__":
         "Detect if a linked list has a cycle",
         "Given a knapsack capacity, maximize the total value of items",
         "What is the best way to schedule overlapping meetings",
+        "Count the number of islands in a grid of land and water",
         "Solve this completely unrelated nonsense problem about cats"
     ]
 
@@ -92,7 +117,7 @@ if __name__ == "__main__":
         print(f"\nProblem: {problem}")
         print(f"  -> Matched pattern: {match['name']}")
         print(f"  -> Category: {match['category']}")
-        print(f"  -> Score: {match.get('match_score', 0)}")
+        print(f"  -> Score: {match['match_score']}")
 
     print("\n" + "=" * 70)
     print("Top 3 candidates for an ambiguous query:")
@@ -101,4 +126,4 @@ if __name__ == "__main__":
     for p in top:
         print(f"  - {p['name']} (score: {p['match_score']})")
 
-    print("\nPattern matcher working correctly!")
+    print("\nUpgraded pattern matcher working correctly!")
