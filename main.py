@@ -1,9 +1,3 @@
-# main.py
-"""
-DSA Mentor Agent — Main Entry Point
-Launches the Streamlit app with side-by-side chat and code panels.
-"""
-
 import streamlit as st
 
 st.set_page_config(
@@ -16,16 +10,17 @@ st.set_page_config(
 from ui.chat_panel import render_chat_panel
 from ui.code_panel import render_code_panel
 
-# ── Custom CSS ────────────────────────────────────────────────────────────────
+# ── Header ────────────────────────────────────────────────────────────────────
 st.markdown("""
-<style>
-    .block-container { padding-top: 1.5rem; padding-bottom: 1rem; }
-    .stChatMessage { border-radius: 12px; margin-bottom: 0.5rem; }
-    .stTextArea textarea { font-family: 'Courier New', monospace; font-size: 13px; }
-    div[data-testid="column"]:first-child { border-right: 1px solid #e0e0e0; padding-right: 1.5rem; }
-    div[data-testid="column"]:last-child { padding-left: 1.5rem; }
-</style>
+<div style="text-align:center; padding: 0.5rem 0 1rem 0;">
+    <h2 style="margin:0; color:#1f2937;">🧠 DSA Mentor Agent</h2>
+    <p style="margin:0; color:#6b7280; font-size:14px;">
+        Autonomous Dual-Agent AI Tutoring · Socratic Method · Gemini 2.5 Flash
+    </p>
+</div>
 """, unsafe_allow_html=True)
+
+st.divider()
 
 # ── Layout ────────────────────────────────────────────────────────────────────
 col_chat, col_code = st.columns([1, 1])
